@@ -8,7 +8,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     let fr = new FileReader;
     fr.onload = e => {
       iconUrl = e.target.result;
-      let key = tabUrl.substr(tabUrl.indexOf("/", 44),  32);
+      let key = tabUrl.substr(tabUrl.indexOf("/", 43) + 1,  32);
       chrome.storage.local.get(v => {
         let i = 0;
         let j = 0;

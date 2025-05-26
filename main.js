@@ -1,6 +1,5 @@
 chrome.storage.local.get(v => {
   let _a = document.createElement("a");
-  _a.target = "_blank";
   _a.append(new Image(24, 24), "");
   let i = 0;
   while (i in v) {
@@ -15,12 +14,12 @@ chrome.storage.local.get(v => {
     ++i;
   }
 });
-onclick = e =>
-  innerWidth - e.x > 20 ||
-  e.preventDefault(
-    e.target.remove(
-      chrome.storage.local.set({
-        [e.target.nonce] : [0]
-      })
-    )
+onclick = e => {
+  e.preventDefault();
+  let { target } = e;
+  target.tagName == "A" && (
+    innerWidth - e.x < 20
+      ? (target.remove(chrome.storage.local.set({ [target.nonce] : [0] })), document.links.length || close())
+      : chrome.tabs.query({ currentWindow: !0, active: !0 }, tabs => chrome.tabs[tabs[0].url != "chrome://newtab" ? "create": "update"]({ url: target.href }))
   );
+}
