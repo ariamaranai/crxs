@@ -24,6 +24,11 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     } catch (e) {}
   }
 });
+chrome.runtime.onStartup.addListener(() =>
+  chrome.sidePanel.setOptions({
+    path: "crxs.htm"
+  })
+);
 chrome.runtime.onInstalled.addListener(() => (
   chrome.contextMenus.create({
     id: "",
