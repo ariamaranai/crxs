@@ -20,6 +20,8 @@ onclick = e => {
   target.tagName == "A" && (
     innerWidth - e.x < 20
       ? (target.remove(chrome.storage.local.set({ [target.nonce] : [0] })), document.links.length || close())
-      : chrome.tabs.query({ currentWindow: !0, active: !0 }, tabs => chrome.tabs[tabs[0].url != "chrome://newtab" ? "create": "update"]({ url: target.href }))
+      : chrome.tabs.query({ currentWindow: !0, active: !0 }, tabs =>
+          chrome.tabs[tabs[0].url != "chrome://newtab" ? "create": "update"]({ url: target.href })
+        )
   );
 }
