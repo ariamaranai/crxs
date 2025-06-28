@@ -22,7 +22,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     }
     try {
       fr.readAsDataURL(await (await fetch(iconUrl)).blob());
-    } catch (e) {}
+    } catch {}
   }
 });
 chrome.runtime.onStartup.addListener(() =>
