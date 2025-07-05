@@ -27,7 +27,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 });
 chrome.runtime.onStartup.addListener(() =>
   chrome.sidePanel.setOptions({
-    path: "crxs.htm"
+    path: "sidepanel.htm"
   })
 );
 chrome.runtime.onInstalled.addListener(() => (
@@ -39,7 +39,7 @@ chrome.runtime.onInstalled.addListener(() => (
     targetUrlPatterns: ["https://lh3.googleusercontent.com/*"]
   }),
   chrome.sidePanel.setOptions({
-    path: "crxs.htm"
+    path: "sidepanel.htm"
   }),
   chrome.sidePanel.setPanelBehavior({
     openPanelOnActionClick: !0
