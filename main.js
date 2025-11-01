@@ -16,7 +16,7 @@ chrome.storage.local.get(v => {
 });
 onclick = e => {
   e.preventDefault();
-  let target = e.target;
+  let { target } = e;
   target.tagName == "A" && (
     innerWidth - e.x < 20
       ? (target.remove(chrome.storage.local.set({ [target.nonce] : [0] })), document.links.length || close())
