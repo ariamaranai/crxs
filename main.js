@@ -17,7 +17,7 @@ chrome.storage.local.get(v => {
 onclick = e => {
   e.preventDefault();
   let { target } = e;
-  target.tagName == "A" && (
+  return target instanceof HTMLAnchorElement && (
     innerWidth - e.x < 20
       ? (target.remove(chrome.storage.local.set({ [target.i] : [0] })), document.links.length || close())
       : chrome.tabs.query({ currentWindow: !0, active: !0 }, tabs =>
