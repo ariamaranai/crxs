@@ -1,9 +1,9 @@
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   try {
     let iconUrl = info.srcUrl;
-    let s = iconUrl.slice(-4);
-    if (s == "=s60" || s == "s120") {
-      iconUrl = iconUrl.slice(0, (s == "=s60") - 3) + ((await chrome.system.display.getInfo())[0].dpiY >>> 2);
+    let is60 = iconUrl.endsWith("=s60");
+    if (is60 || iconUrl.endsWith("s120")) {
+      iconUrl = iconUrl.slice(0, is60 - 3) + ((await chrome.system.display.getInfo())[0].dpiY >>> 2);
       let tabUrl = tab.url;
       let title = tab.title.replace(/ - Chrome .*/, "");
       let fr = new FileReader;
