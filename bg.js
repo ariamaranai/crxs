@@ -3,7 +3,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     let iconUrl = info.srcUrl;
     let s = iconUrl.slice(-4);
     if (s == "=s60" || s == "s120") {
-      iconUrl = iconUrl.slice(0, (s == "=s60") - 3) + ((await chrome.system.display.getInfo())[0].dpiY >> 2);
+      iconUrl = iconUrl.slice(0, (s == "=s60") - 3) + ((await chrome.system.display.getInfo())[0].dpiY >>> 2);
       let tabUrl = tab.url;
       let title = tab.title.replace(/ - Chrome .*/, "");
       let fr = new FileReader;
@@ -25,11 +25,6 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     }
   } catch {}
 });
-chrome.runtime.onStartup.addListener(() =>
-  chrome.sidePanel.setOptions({
-    path: "sidepanel.htm"
-  })
-);
 chrome.runtime.onInstalled.addListener(() => (
   chrome.contextMenus.create({
     id: "",
@@ -37,9 +32,6 @@ chrome.runtime.onInstalled.addListener(() => (
     contexts: ["image"],
     documentUrlPatterns: ["https://chromewebstore.google.com/detail/*"],
     targetUrlPatterns: ["https://lh3.googleusercontent.com/*"]
-  }),
-  chrome.sidePanel.setOptions({
-    path: "sidepanel.htm"
   }),
   chrome.sidePanel.setPanelBehavior({
     openPanelOnActionClick: !0

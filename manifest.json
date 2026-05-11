@@ -20,5 +20,8 @@
   "background": {
     "service_worker": "bg.js"
   },
-  "action": {}
+  "action": {},
+  "side_panel": {
+    "default_path": "sidepanel.htm"
+  }
 }
