@@ -11,9 +11,8 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     fr.onload = e => {
       iconUrl = e.target.result;
       let key = tabUrl.substr(tabUrl.indexOf("/", 43) + 1,  32);
-      chrome.storage.local.get(v => {
+      chrome.storage.local.get((v, j) => {
         let hole = null;
-        let j;
         let i = 0;
         while (i in v && ((j = v[i][0]) ? j != key : (hole ??= i, 1)))
           ++i;
